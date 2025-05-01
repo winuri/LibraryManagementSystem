@@ -18,40 +18,40 @@ public class Library {
         borrowedItems = new HashMap<>();
     }
 
-    public void addItem(LibraryItems libraryItems){
-        libraryItems.add(libraryItems);
+    public void addItem(LibraryItems libraryItem){
+        libraryItems.add(libraryItem);
     }
     public  void  addUser(User user){
         userList.add(user);
     }
-    public List<libraryItems> getlibraryItems(){
+    public List<LibraryItems> getLibraryItems() {
         return libraryItems;
     }
     public  List<User>getUserList(){
         return userList;
     }
-    public void borrowedItem(String serialNumber,User user){
-        for (libraryItems libraryItems : libraryItems){
-            if ((libraryItems.getSerialNumber().eqvels(serialNumber)){
-                if(borrowedItems.containsKey(libraryItems.getSerialNumber())){
-                    System.out.println("Item"+libraryItems.getTitle()+"is already borrowed");
+    public void borrowItem(String serialNumber,User user){
+        for(LibraryItems libraryItem : libraryItems){
+            if(libraryItem.getSerialNumber().equals(serialNumber)){
+                if(borrowedItems.containsKey(libraryItem.getSerialNumber())){
+                    System.out.println("Item "+libraryItem.getTitle()+" is already borrowed");
                     return;
                 }
-                borrowedItems.put(libraryItems.getSerialNumber(),user.getName());
-                libraryItems.isBorrowed = true;
-                System.out.println("Item"+libraryItems.getTitle()+"is successfully borrowed bu user"+user.getName());
+                borrowedItems.put(libraryItem.getSerialNumber(), user.getName());
+                libraryItem.isBorrowed = true;
+                System.out.println("Item "+libraryItem.getTitle()+" is successfully borrowed by user "+user.getName());
                 return;
             }
         }
-        System.out.println("Item with serial number "+serialNumber+"cdoes not exist");
+        System.out.println("Item with serial number "+serialNumber+"does not exist");
     }
-    public void returnBorrowedItem(String serialNumber.User user){
-        for (LibraryItems libraryItems : libraryItems){
-            if(libraryItems.getSerialNumber().equals(serialNumber)){
-                if (borrowedItems.containsKey(libraryItems.getSerialNumber())){
-                    borrowedItems.remove(libraryItems.getSerialNumber());
-                    libraryItems.isBorrowed = false;
-                    System.out.println("Item "+libraryItems.getTitle()+"is successfully returred by user "+user.getName());
+    public  void returnBorrowedItem(String serialNumber,User user){
+        for(LibraryItems libraryItem : libraryItems){
+            if(libraryItem.getSerialNumber().equals(serialNumber)){
+                if(borrowedItems.containsKey(libraryItem.getSerialNumber())){
+                    borrowedItems.remove(libraryItem.getSerialNumber());
+                    libraryItem.isBorrowed = false;
+                    System.out.println("Item "+libraryItem.getTitle()+" is successfully returned by user "+user.getName());
                     return;
                 }
             }
